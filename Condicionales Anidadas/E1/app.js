@@ -10,18 +10,18 @@ button.addEventListener('click', Comparar);
 function Comparar() {
     if (N1.value > N2.value && N1.value > N3.value) {
         imp.innerHTML = `
-        <h4 class="alert-heading text-info text-center"> El numero ${N1.value} es el mayor </h4>
+        <h4 class="alert-heading text-info text-center"> El numeroA: ${N1.value} es el mayor </h4>
         `
         return;
     }
     if (N2.value > N1.value && N2.value > N3.value) {
         imp.innerHTML = `
-        <h4 class="alert-heading text-info text-center"> El numero ${N2.value} es el mayor </h4>
+        <h4 class="alert-heading text-info text-center"> El numeroB: ${N2.value} es el mayor </h4>
         `
         return;
     }
         imp.innerHTML = `
-        <h4 class="alert-heading text-info text-center"> El numero ${N3.value} es el mayor </h4>
+        <h4 class="alert-heading text-info text-center"> El numeroC: ${N3.value} es el mayor </h4>
         `
         return;
 
