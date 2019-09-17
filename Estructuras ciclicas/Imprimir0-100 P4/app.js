@@ -48,7 +48,7 @@ function stop(x,id){
 
 }
 
- function createList(x,id){
+function createList(x,id){
 
         let Ul = document.createElement('ul');
         Ul.setAttribute('class','list-group list-group-flush');
