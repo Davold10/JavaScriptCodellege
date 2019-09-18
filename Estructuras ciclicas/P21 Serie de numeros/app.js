@@ -6,55 +6,56 @@ let number = 5;
 let total = 5;
 
 //LISTENERS
-btnList.addEventListener('click',CreateList)
+btnList.addEventListener('click', CreateList)
 
 //FUNCTIONS
-function CreateList(){
+function CreateList() {
+
+    let x = 2;
     
-    while(total != 1800){
-        console.log('boy wtf');
-        
-        let x = 1;
-        stop(number, total)
-        if(x%2 == 0){
+    while (total < 1800) {
+        stop(number, total);
+
+        if (x % 2 == 0) {
             number += 2;
-        } else{
+        } else {
             number += 3;
         }
-        total += number
+        total += number;
+        x++;
     }
 }
 
 
-function stop(x,id){
+function stop(x, id) {
 
-    return new Promise( (res,rej)=>{
+    return new Promise((res, rej) => {
 
 
         setTimeout(() => {
 
-            res(PrintList(x,id))
-            
+            res(PrintList(x, id))
+
         }, 200);
 
 
-    } )
+    })
 
 
 
 }
 
-function PrintList(x,total){
+function PrintList(x, total) {
 
-        let Ul = document.createElement('ul');
-        Ul.setAttribute('class','list-group list-group-flush');
-        
-        let Li = document.createElement('li');
-        Li.setAttribute('class','list-group-item');
-        Li.appendChild(document.createTextNode(`Numero: ${x}; Total: ${total}`));
-    
-        let Part = document.getElementById('print');
-        Part.appendChild(Ul);
-        Ul.appendChild(Li);
+    let Ul = document.createElement('ul');
+    Ul.setAttribute('class', 'list-group list-group-flush');
+
+    let Li = document.createElement('li');
+    Li.setAttribute('class', 'list-group-item');
+    Li.appendChild(document.createTextNode(`Numero: ${x}; Total: ${total}`));
+
+    let Part = document.getElementById('print');
+    Part.appendChild(Ul);
+    Ul.appendChild(Li);
 
 }
