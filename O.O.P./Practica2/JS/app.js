@@ -10,6 +10,7 @@ let favor = 0,
 
 
 evenListener();
+let votacion = new ClaseVotacion();
 
 function evenListener() {
     btnAgregarPregunta.addEventListener('click', pasarVotacion);
@@ -28,27 +29,24 @@ function pasarVotacion() {
 }
 
 function conteoVotosFavor() {
-    let votacion = new ClaseVotacion(favor);
 
     let totalVotacionAFavor = votacion.votacionesAFavor();
-    favor += totalVotacionAFavor;
-    console.log(favor);
+    favor = totalVotacionAFavor;
+    console.log(totalVotacionAFavor);
 }
 
 function conteoVotosContra() {
-    let votacion = new ClaseVotacion();
 
     let totalVotacionEnContra = votacion.votacionesEnContra();
-    contra += totalVotacionEnContra;
-    console.log(contra);
+    contra = totalVotacionEnContra;
+    console.log(totalVotacionEnContra);
 }
 
 function conteoVotosAbstencion() {
-    let votacion = new ClaseVotacion();
 
     let conteoVotosAbstencion = votacion.votacionAbstencion();
-    abstencion += conteoVotosAbstencion;
-    console.log(abstencion);
+    abstencion = conteoVotosAbstencion;
+    console.log(conteoVotosAbstencion);
 }
 
 function finalizar() {

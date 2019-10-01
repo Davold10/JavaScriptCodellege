@@ -4,10 +4,10 @@ class ClaseVotacion {
     totalContra = 0;
     totalAbstencion = 0;
 
-    constructor(totalFavor) {
-        this.totalFavor = totalFavor;
-        //     this.totalContra = totalContra;
-        //     this.totalAbstencion = totalAbstencion;
+    constructor(totalFavor, totalContra, totalAbstencion) {
+        // this.totalFavor = totalFavor;
+        // this.totalContra = totalContra;
+        // this.totalAbstencion = totalAbstencion;
     }
 
     votacionesAFavor() {
@@ -16,7 +16,7 @@ class ClaseVotacion {
     }
 
     votacionesEnContra() {
-        this.totalContra++;
+        this.totalContra ++;
         return this.totalContra;
     }
 
