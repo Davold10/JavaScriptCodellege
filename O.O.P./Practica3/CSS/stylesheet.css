@@ -13,3 +13,7 @@
     width: 55px;
     height: 26px;
 }
+.container{
+    margin-right: 20px !important;
+    margin-left: 150px !important;
+}
