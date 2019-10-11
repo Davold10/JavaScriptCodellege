@@ -18,4 +18,22 @@ class LocalStorage {
         }
         return cursosLS
     }
+
+    eliminarCursoLS(curso){
+        let cursosLS;
+        
+        cursosLS = this.getCoursesLocalStorage();
+
+        cursosLS.forEach(function (cursoLS, index){
+            if(cursoLS.id===curso){
+                cursosLS.splice(index,1)
+            }
+        })
+
+        localStorage.setItem('courses', JSON.stringify(cursosLS))
+    }
+
+    vaciarLocalStorage(){
+        localStorage.clear();
+    }
 }

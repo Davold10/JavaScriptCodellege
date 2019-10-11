@@ -1,6 +1,6 @@
 class Carrito {
 
-    constructor(){
+    constructor() {
         this.LS = new LocalStorage();
     }
 
@@ -34,14 +34,50 @@ class Carrito {
         this.LS.SaveCourseLocalStorage(dataCourse);
     }
 
-    eliminarCursoLS(curso){
-        let cursosLS;
-        cursosLS = this.LS.getCoursesLocalStorage();
+    EliminarCursoCarrito(event) {
 
-        cursosLS.forEach(function (cursoLS, index){
-            if(cursoLS.id===curso){
-                cursosLS.splice(index,1)
-            }
+        console.log(event);
+
+        event.preventDefault();
+
+        let curso, cursoId;
+
+        if (event.target.classList.contains('borrar-curso')) {
+
+            curso = event.target.parentElement.parentElement;
+            console.log(curso);
+            cursoId = curso.querySelector('a').getAttribute('data-id')
+            curso.remove();
+            this.LS.eliminarCursoLS(cursoId);
+        }
+    }
+
+    ShowCoursesLSCar() {
+
+        let CoursesLS = this.LS.getCoursesLocalStorage();
+        
+        CoursesLS.forEach(function (curso) {
+
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>
+            <img src="${curso.imagen}" width=100>
+            </td>
+            <td>${curso.titulo}</td>
+            <td>${curso.precio}</td>
+            <td>
+            <a href="#" class="borrar-curso" data-id="${curso.id}">X</a>
+            </td>
+            `
+            listaCursos.appendChild(row);
         })
+    }
+
+    vaciarCarrito(listaCursos){
+        listaCursos.innerHTML = '';
+
+        while(listaCursos.firstChild){
+            listaCursos.removeChild(listaCursos.firstChild)
+        }
+        this.LS.vaciarLocalStorage();
     }
 }

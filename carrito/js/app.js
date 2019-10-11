@@ -1,32 +1,41 @@
 const carrito = document.getElementById('carrito');
 const cursos = document.getElementById('lista-cursos');
 const listaCursos =  document.querySelector('#lista-carrito tbody');
+const vaciarCarrito = document.getElementById('vaciar-carrito')
+
+const objetCar =  new Carrito();
 
 eventListener();
-ShowCoursesLSCar();
+
 
 function eventListener(){
-    cursos.addEventListener('click', GetCourse)
+    cursos.addEventListener('click', GetCourse);
+    carrito.addEventListener('click', deleteCourse);
+    document.addEventListener('DOMContentLoaded', ModtrarCursosCarrito);
+    vaciarCarrito.addEventListener('click', eliminarCarritoCursos)
+    
 }
 
-function ShowCoursesLSCar(){
-    let LS = new LocalStorage();
+function ModtrarCursosCarrito(){
+    objetCar.ShowCoursesLSCar();
+}
 
-   let CoursesLS =  LS.getCoursesLocalStorage();
+function deleteCourse(){
+    objetCar.EliminarCursoCarrito(event);
+    const Toast = Swal.mixin({
+        toast: true,
+        showConfirmButton: false,
+        timer: 3000
+      })
+      
+      Toast.fire({
+        type: 'error',
+        title: 'Curso eliminado con exito'
+      })
+}
 
-   CoursesLS.forEach(function(curso){
-       const row = document.createElement('tr');
-       row.innerHTML =   `<td>
-       <img src="${curso.imagen}" width=100>
-       </td>
-       <td>${curso.titulo}</td>
-       <td>${curso.precio}</td>
-       <td>
-       <a href="#" class="borrar-curso" data-id="${curso.id}">X</a>
-       </td>
-       `
-       listaCursos.appendChild(row);
-   })
+function eliminarCarritoCursos(){
+    objetCar.vaciarCarrito(listaCursos);
 }
 
 function GetCourse(event) {
@@ -35,8 +44,12 @@ function GetCourse(event) {
 
     if (event.target.classList.contains('agregar-carrito')){
         let Course = event.target.parentElement.parentElement;
-        
-        let objetCard =  new Carrito();
-        objetCard.readDataCourse(Course, listaCursos);
+        objetCar.readDataCourse(Course, listaCursos);
     }
+    Swal.fire({
+        type: 'success',
+        title: 'Curso agregado con exito',
+        showConfirmButton: false,
+        timer: 1500
+      })
 }
