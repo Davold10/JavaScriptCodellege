@@ -12,9 +12,17 @@ class Carrito {
             precio: curso.querySelector('.precio span').textContent,
             id: curso.querySelector('a').getAttribute("data-id")
         }
+        
+        let repetido = this.verifyrepeat(dataCourse);
+        
 
+         if (repetido === 0) {
+           this.addCourseCar(dataCourse, listaCursos);
+         } else{
+            console.log('Su curso ya esta en el carrito');
+            
+        }
 
-        this.addCourseCar(dataCourse, listaCursos);
     }
 
     addCourseCar(dataCourse, listaCursos) {
@@ -79,5 +87,21 @@ class Carrito {
             listaCursos.removeChild(listaCursos.firstChild)
         }
         this.LS.vaciarLocalStorage();
+    }
+
+    verifyrepeat(dataCourse){
+
+        let repetido =0
+
+        let cursosLS = this.LS.getCoursesLocalStorage();
+
+        cursosLS.forEach(function (cursoLS){
+            if(cursoLS.id===dataCourse.id){
+                repetido = 1
+            }
+        })
+        console.log(repetido);
+        
+        return repetido
     }
 }
